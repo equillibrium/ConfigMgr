@@ -154,7 +154,7 @@
 	3.0.2 - (2020-03-29) Fixed a spelling mistake in the Manufacturer parameter.
 	3.0.3 - (2020-03-31) Small update to the Filter parameter's default value, it's now 'Drivers' instead of 'Driver'. Also added '64 bits' and '32 bits' to the translation function for the OS architecture of the current running task sequence.
 	3.0.4 - (2020-04-09) Changed the translation function for the OS architecture of the current running task sequence into using wildcard support instead of adding language specified values
-    3.0.4.1_TASS (2020-06-06) Added 2004 support
+    3.0.4.1_TASS (2020-06-06) Added 2004 support. Detects 2004 as 1909 since DAT is not updated for 2004 yet.
 #>
 [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = "Execute")]
 param (
@@ -582,9 +582,8 @@ Process {
 				$OSName = "Windows 10"
 				switch (([System.Version]$InputObject).Build) {
 					"19041" {
-						$OSVersion = 2004
+						$OSVersion = 1909
 					}
-
 					"18363" {
 						$OSVersion = 1909
 					}
